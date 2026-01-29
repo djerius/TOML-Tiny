@@ -1,4 +1,4 @@
-# File automatically generated from BurntSushi/toml-test
+# File automatically generated from toml-lang/toml-test
 use utf8;
 use Test2::V0;
 use Data::Dumper;
@@ -18,19 +18,19 @@ my $toml = do{ local $/; <$fh>; };
 close $fh;
 
 my $expected1 = {
-               "backslash" => "This string has a \\ backslash character.",
-               "backspace" => "This string has a \b backspace character.",
-               "carriage" => "This string has a \r carriage return character.",
-               "delete" => "This string has a \177 delete control code.",
-               "formfeed" => "This string has a \f form feed character.",
-               "newline" => "This string has a \n new line character.",
-               "notunicode1" => "This string does not have a unicode \\u escape.",
-               "notunicode2" => "This string does not have a unicode \\u escape.",
-               "notunicode3" => "This string does not have a unicode \\u0075 escape.",
-               "notunicode4" => "This string does not have a unicode \\u escape.",
-               "quote" => "This string has a \" quote character.",
-               "tab" => "This string has a \t tab character.",
-               "unitseparator" => "This string has a \37 unit separator control code."
+               "backslash" => "|\\.",
+               "backspace" => "|\b.",
+               "carriage" => "|\r.",
+               "delete" => "|\177.",
+               "formfeed" => "|\f.",
+               "newline" => "|\n.",
+               "notunicode1" => "|\\u.",
+               "notunicode2" => "|\\u.",
+               "notunicode3" => "|\\u0075.",
+               "notunicode4" => "|\\u.",
+               "quote" => "|\".",
+               "tab" => "|\t.",
+               "unitseparator" => "|\37."
              };
 
 

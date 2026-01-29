@@ -1,4 +1,4 @@
-# File automatically generated from BurntSushi/toml-test
+# File automatically generated from toml-lang/toml-test
 use utf8;
 use Test2::V0;
 use Data::Dumper;
@@ -24,7 +24,8 @@ my $expected1 = {
                "formfeed" => "This string has a \\f form feed character.",
                "newline" => "This string has a \\n new line character.",
                "slash" => "This string has a \\/ slash character.",
-               "tab" => "This string has a \\t tab character."
+               "tab" => "This string has a \\t tab character.",
+               "unescaped_tab" => "This string has an \t unescaped tab character."
              };
 
 

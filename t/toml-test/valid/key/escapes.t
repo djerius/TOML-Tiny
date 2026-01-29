@@ -1,4 +1,4 @@
-# File automatically generated from BurntSushi/toml-test
+# File automatically generated from toml-lang/toml-test
 use utf8;
 use Test2::V0;
 use Data::Dumper;
@@ -18,6 +18,7 @@ my $toml = do{ local $/; <$fh>; };
 close $fh;
 
 my $expected1 = {
+               "\b" => "bell",
                "\n" => "newline",
                "\"" => "just a quote",
                "\"quoted\"" => {

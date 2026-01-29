@@ -1,4 +1,4 @@
-# File automatically generated from BurntSushi/toml-test
+# File automatically generated from toml-lang/toml-test
 use utf8;
 use Test2::V0;
 use Data::Dumper;
@@ -18,125 +18,132 @@ my $toml = do{ local $/; <$fh>; };
 close $fh;
 
 my $expected1 = {
-               "f1" => bless( {
-                                "_file" => "(eval 194)",
-                                "_lines" => [
-                                              7
-                                            ],
-                                "code" => sub {
-                                              BEGIN {${^WARNING_BITS} = "\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x15\x00\x04\x40\x05\x04\x50"}
-                                              use strict;
-                                              no feature ':all';
-                                              use feature ':5.16';
-                                              require Math::BigFloat;
-                                              my $got = 'Math::BigFloat'->new($_);
-                                              'Math::BigFloat'->new('0')->beq($got);
-                                          },
-                                "name" => "Math::BigFloat->new(\"0\")->beq(\$_)",
-                                "operator" => "CODE(...)"
-                              }, 'Test2::Compare::Custom' ),
-               "f2" => bless( {
-                                "_file" => "(eval 196)",
-                                "_lines" => [
-                                              7
-                                            ],
-                                "code" => sub {
-                                              BEGIN {${^WARNING_BITS} = "\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x15\x00\x04\x40\x05\x04\x50"}
-                                              use strict;
-                                              no feature ':all';
-                                              use feature ':5.16';
-                                              require Math::BigFloat;
-                                              my $got = 'Math::BigFloat'->new($_);
-                                              'Math::BigFloat'->new('0')->beq($got);
-                                          },
-                                "name" => "Math::BigFloat->new(\"0\")->beq(\$_)",
-                                "operator" => "CODE(...)"
-                              }, 'Test2::Compare::Custom' ),
-               "f3" => bless( {
-                                "_file" => "(eval 192)",
-                                "_lines" => [
-                                              7
-                                            ],
-                                "code" => sub {
-                                              BEGIN {${^WARNING_BITS} = "\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x15\x00\x04\x40\x05\x04\x50"}
-                                              use strict;
-                                              no feature ':all';
-                                              use feature ':5.16';
-                                              require Math::BigFloat;
-                                              my $got = 'Math::BigFloat'->new($_);
-                                              'Math::BigFloat'->new('0')->beq($got);
-                                          },
-                                "name" => "Math::BigFloat->new(\"0\")->beq(\$_)",
-                                "operator" => "CODE(...)"
-                              }, 'Test2::Compare::Custom' ),
-               "f4" => bless( {
-                                "_file" => "(eval 193)",
-                                "_lines" => [
-                                              7
-                                            ],
-                                "code" => sub {
-                                              BEGIN {${^WARNING_BITS} = "\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x15\x00\x04\x40\x05\x04\x50"}
-                                              use strict;
-                                              no feature ':all';
-                                              use feature ':5.16';
-                                              require Math::BigFloat;
-                                              my $got = 'Math::BigFloat'->new($_);
-                                              'Math::BigFloat'->new('0')->beq($got);
-                                          },
-                                "name" => "Math::BigFloat->new(\"0\")->beq(\$_)",
-                                "operator" => "CODE(...)"
-                              }, 'Test2::Compare::Custom' ),
-               "f5" => bless( {
-                                "_file" => "(eval 195)",
-                                "_lines" => [
-                                              7
-                                            ],
-                                "code" => sub {
-                                              BEGIN {${^WARNING_BITS} = "\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x15\x00\x04\x40\x05\x04\x50"}
-                                              use strict;
-                                              no feature ':all';
-                                              use feature ':5.16';
-                                              require Math::BigFloat;
-                                              my $got = 'Math::BigFloat'->new($_);
-                                              'Math::BigFloat'->new('0')->beq($got);
-                                          },
-                                "name" => "Math::BigFloat->new(\"0\")->beq(\$_)",
-                                "operator" => "CODE(...)"
-                              }, 'Test2::Compare::Custom' ),
-               "f6" => bless( {
-                                "_file" => "(eval 191)",
-                                "_lines" => [
-                                              7
-                                            ],
-                                "code" => sub {
-                                              BEGIN {${^WARNING_BITS} = "\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x15\x00\x04\x40\x05\x04\x50"}
-                                              use strict;
-                                              no feature ':all';
-                                              use feature ':5.16';
-                                              require Math::BigFloat;
-                                              my $got = 'Math::BigFloat'->new($_);
-                                              'Math::BigFloat'->new('0')->beq($got);
-                                          },
-                                "name" => "Math::BigFloat->new(\"0\")->beq(\$_)",
-                                "operator" => "CODE(...)"
-                              }, 'Test2::Compare::Custom' ),
-               "f7" => bless( {
-                                "_file" => "(eval 190)",
-                                "_lines" => [
-                                              7
-                                            ],
-                                "code" => sub {
-                                              BEGIN {${^WARNING_BITS} = "\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x15\x00\x04\x40\x05\x04\x50"}
-                                              use strict;
-                                              no feature ':all';
-                                              use feature ':5.16';
-                                              require Math::BigFloat;
-                                              my $got = 'Math::BigFloat'->new($_);
-                                              'Math::BigFloat'->new('0')->beq($got);
-                                          },
-                                "name" => "Math::BigFloat->new(\"0\")->beq(\$_)",
-                                "operator" => "CODE(...)"
-                              }, 'Test2::Compare::Custom' )
+               "exponent" => bless( {
+                                      "_file" => "(eval 000)",
+                                      "_lines" => [
+                                                    7
+                                                  ],
+                                      "code" => sub {
+                                                    BEGIN {${^WARNING_BITS} = "\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x41\x50\x51\x00\x00\x15\x55\x55"}
+                                                    use strict;
+                                                    no feature ':all';
+                                                    use feature ':5.16';
+                                                    require Math::BigFloat;
+                                                    my $got = 'Math::BigFloat'->new($_);
+                                                    'Math::BigFloat'->new('0')->beq($got);
+                                                },
+                                      "name" => "Math::BigFloat->new(\"0\")->beq(\$_)",
+                                      "operator" => "CODE(...)",
+                                      "stringify_got" => 0
+                                    }, 'Test2::Compare::Custom' ),
+               "exponent-signed-neg" => bless( {
+                                                 "_file" => "(eval 000)",
+                                                 "_lines" => [
+                                                               7
+                                                             ],
+                                                 "code" => sub {
+                                                               BEGIN {${^WARNING_BITS} = "\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x41\x50\x51\x00\x00\x15\x55\x55"}
+                                                               use strict;
+                                                               no feature ':all';
+                                                               use feature ':5.16';
+                                                               require Math::BigFloat;
+                                                               my $got = 'Math::BigFloat'->new($_);
+                                                               'Math::BigFloat'->new('-0')->beq($got);
+                                                           },
+                                                 "name" => "Math::BigFloat->new(\"-0\")->beq(\$_)",
+                                                 "operator" => "CODE(...)",
+                                                 "stringify_got" => 0
+                                               }, 'Test2::Compare::Custom' ),
+               "exponent-signed-pos" => bless( {
+                                                 "_file" => "(eval 000)",
+                                                 "_lines" => [
+                                                               7
+                                                             ],
+                                                 "code" => sub {
+                                                               BEGIN {${^WARNING_BITS} = "\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x41\x50\x51\x00\x00\x15\x55\x55"}
+                                                               use strict;
+                                                               no feature ':all';
+                                                               use feature ':5.16';
+                                                               require Math::BigFloat;
+                                                               my $got = 'Math::BigFloat'->new($_);
+                                                               'Math::BigFloat'->new('0')->beq($got);
+                                                           },
+                                                 "name" => "Math::BigFloat->new(\"0\")->beq(\$_)",
+                                                 "operator" => "CODE(...)",
+                                                 "stringify_got" => 0
+                                               }, 'Test2::Compare::Custom' ),
+               "exponent-two-0" => bless( {
+                                            "_file" => "(eval 000)",
+                                            "_lines" => [
+                                                          7
+                                                        ],
+                                            "code" => sub {
+                                                          BEGIN {${^WARNING_BITS} = "\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x41\x50\x51\x00\x00\x15\x55\x55"}
+                                                          use strict;
+                                                          no feature ':all';
+                                                          use feature ':5.16';
+                                                          require Math::BigFloat;
+                                                          my $got = 'Math::BigFloat'->new($_);
+                                                          'Math::BigFloat'->new('0')->beq($got);
+                                                      },
+                                            "name" => "Math::BigFloat->new(\"0\")->beq(\$_)",
+                                            "operator" => "CODE(...)",
+                                            "stringify_got" => 0
+                                          }, 'Test2::Compare::Custom' ),
+               "signed-neg" => bless( {
+                                        "_file" => "(eval 000)",
+                                        "_lines" => [
+                                                      7
+                                                    ],
+                                        "code" => sub {
+                                                      BEGIN {${^WARNING_BITS} = "\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x41\x50\x51\x00\x00\x15\x55\x55"}
+                                                      use strict;
+                                                      no feature ':all';
+                                                      use feature ':5.16';
+                                                      require Math::BigFloat;
+                                                      my $got = 'Math::BigFloat'->new($_);
+                                                      'Math::BigFloat'->new('-0')->beq($got);
+                                                  },
+                                        "name" => "Math::BigFloat->new(\"-0\")->beq(\$_)",
+                                        "operator" => "CODE(...)",
+                                        "stringify_got" => 0
+                                      }, 'Test2::Compare::Custom' ),
+               "signed-pos" => bless( {
+                                        "_file" => "(eval 000)",
+                                        "_lines" => [
+                                                      7
+                                                    ],
+                                        "code" => sub {
+                                                      BEGIN {${^WARNING_BITS} = "\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x41\x50\x51\x00\x00\x15\x55\x55"}
+                                                      use strict;
+                                                      no feature ':all';
+                                                      use feature ':5.16';
+                                                      require Math::BigFloat;
+                                                      my $got = 'Math::BigFloat'->new($_);
+                                                      'Math::BigFloat'->new('0')->beq($got);
+                                                  },
+                                        "name" => "Math::BigFloat->new(\"0\")->beq(\$_)",
+                                        "operator" => "CODE(...)",
+                                        "stringify_got" => 0
+                                      }, 'Test2::Compare::Custom' ),
+               "zero" => bless( {
+                                  "_file" => "(eval 000)",
+                                  "_lines" => [
+                                                7
+                                              ],
+                                  "code" => sub {
+                                                BEGIN {${^WARNING_BITS} = "\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x41\x50\x51\x00\x00\x15\x55\x55"}
+                                                use strict;
+                                                no feature ':all';
+                                                use feature ':5.16';
+                                                require Math::BigFloat;
+                                                my $got = 'Math::BigFloat'->new($_);
+                                                'Math::BigFloat'->new('0')->beq($got);
+                                            },
+                                  "name" => "Math::BigFloat->new(\"0\")->beq(\$_)",
+                                  "operator" => "CODE(...)",
+                                  "stringify_got" => 0
+                                }, 'Test2::Compare::Custom' )
              };
 
 

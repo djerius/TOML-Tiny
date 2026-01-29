@@ -1,4 +1,4 @@
-# File automatically generated from BurntSushi/toml-test
+# File automatically generated from toml-lang/toml-test
 use utf8;
 use Test2::V0;
 use Data::Dumper;
@@ -23,12 +23,12 @@ my $expected1 = {
                                 "boring" => 0,
                                 "perfection" => [
                                                   bless( {
-                                                           "_file" => "(eval 164)",
+                                                           "_file" => "(eval 000)",
                                                            "_lines" => [
                                                                          7
                                                                        ],
                                                            "code" => sub {
-                                                                         BEGIN {${^WARNING_BITS} = "\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x15\x00\x04\x40\x05\x04\x50"}
+                                                                         BEGIN {${^WARNING_BITS} = "\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x41\x50\x51\x00\x00\x15\x55\x55"}
                                                                          use strict;
                                                                          no feature ':all';
                                                                          use feature ':5.16';
@@ -37,15 +37,16 @@ my $expected1 = {
                                                                          'Math::BigInt'->new('6')->beq($got);
                                                                      },
                                                            "name" => "Math::BigInt->new(\"6\")->beq(\$_)",
-                                                           "operator" => "CODE(...)"
+                                                           "operator" => "CODE(...)",
+                                                           "stringify_got" => 0
                                                          }, 'Test2::Compare::Custom' ),
                                                   bless( {
-                                                           "_file" => "(eval 165)",
+                                                           "_file" => "(eval 000)",
                                                            "_lines" => [
                                                                          7
                                                                        ],
                                                            "code" => sub {
-                                                                         BEGIN {${^WARNING_BITS} = "\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x15\x00\x04\x40\x05\x04\x50"}
+                                                                         BEGIN {${^WARNING_BITS} = "\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x41\x50\x51\x00\x00\x15\x55\x55"}
                                                                          use strict;
                                                                          no feature ':all';
                                                                          use feature ':5.16';
@@ -54,15 +55,16 @@ my $expected1 = {
                                                                          'Math::BigInt'->new('28')->beq($got);
                                                                      },
                                                            "name" => "Math::BigInt->new(\"28\")->beq(\$_)",
-                                                           "operator" => "CODE(...)"
+                                                           "operator" => "CODE(...)",
+                                                           "stringify_got" => 0
                                                          }, 'Test2::Compare::Custom' ),
                                                   bless( {
-                                                           "_file" => "(eval 166)",
+                                                           "_file" => "(eval 000)",
                                                            "_lines" => [
                                                                          7
                                                                        ],
                                                            "code" => sub {
-                                                                         BEGIN {${^WARNING_BITS} = "\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x15\x00\x04\x40\x05\x04\x50"}
+                                                                         BEGIN {${^WARNING_BITS} = "\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x41\x50\x51\x00\x00\x15\x55\x55"}
                                                                          use strict;
                                                                          no feature ':all';
                                                                          use feature ':5.16';
@@ -71,7 +73,8 @@ my $expected1 = {
                                                                          'Math::BigInt'->new('496')->beq($got);
                                                                      },
                                                            "name" => "Math::BigInt->new(\"496\")->beq(\$_)",
-                                                           "operator" => "CODE(...)"
+                                                           "operator" => "CODE(...)",
+                                                           "stringify_got" => 0
                                                          }, 'Test2::Compare::Custom' )
                                                 ]
                               }

@@ -1,4 +1,4 @@
-# File automatically generated from BurntSushi/toml-test
+# File automatically generated from toml-lang/toml-test
 use utf8;
 use Test2::V0;
 use Data::Dumper;
@@ -18,8 +18,20 @@ my $toml = do{ local $/; <$fh>; };
 close $fh;
 
 my $expected1 = {
-               "answer4" => "\x{3b4}",
-               "answer8" => "\x{3b4}"
+               "a" => "a",
+               "b" => "b",
+               "c" => "c",
+               "delta-1" => "\x{3b4}",
+               "delta-2" => "\x{3b4}",
+               "ml-a" => "a",
+               "ml-b" => "b",
+               "ml-c" => "c",
+               "ml-delta-1" => "\x{3b4}",
+               "ml-delta-2" => "\x{3b4}",
+               "ml-null-1" => "\0",
+               "ml-null-2" => "\0",
+               "null-1" => "\0",
+               "null-2" => "\0"
              };
 
 

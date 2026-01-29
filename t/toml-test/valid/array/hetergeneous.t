@@ -1,4 +1,4 @@
-# File automatically generated from BurntSushi/toml-test
+# File automatically generated from toml-lang/toml-test
 use utf8;
 use Test2::V0;
 use Data::Dumper;
@@ -21,12 +21,12 @@ my $expected1 = {
                "mixed" => [
                             [
                               bless( {
-                                       "_file" => "(eval 139)",
+                                       "_file" => "(eval 000)",
                                        "_lines" => [
                                                      7
                                                    ],
                                        "code" => sub {
-                                                     BEGIN {${^WARNING_BITS} = "\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x15\x00\x04\x40\x05\x04\x50"}
+                                                     BEGIN {${^WARNING_BITS} = "\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x41\x50\x51\x00\x00\x15\x55\x55"}
                                                      use strict;
                                                      no feature ':all';
                                                      use feature ':5.16';
@@ -35,15 +35,16 @@ my $expected1 = {
                                                      'Math::BigInt'->new('1')->beq($got);
                                                  },
                                        "name" => "Math::BigInt->new(\"1\")->beq(\$_)",
-                                       "operator" => "CODE(...)"
+                                       "operator" => "CODE(...)",
+                                       "stringify_got" => 0
                                      }, 'Test2::Compare::Custom' ),
                               bless( {
-                                       "_file" => "(eval 140)",
+                                       "_file" => "(eval 000)",
                                        "_lines" => [
                                                      7
                                                    ],
                                        "code" => sub {
-                                                     BEGIN {${^WARNING_BITS} = "\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x15\x00\x04\x40\x05\x04\x50"}
+                                                     BEGIN {${^WARNING_BITS} = "\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x41\x50\x51\x00\x00\x15\x55\x55"}
                                                      use strict;
                                                      no feature ':all';
                                                      use feature ':5.16';
@@ -52,7 +53,8 @@ my $expected1 = {
                                                      'Math::BigInt'->new('2')->beq($got);
                                                  },
                                        "name" => "Math::BigInt->new(\"2\")->beq(\$_)",
-                                       "operator" => "CODE(...)"
+                                       "operator" => "CODE(...)",
+                                       "stringify_got" => 0
                                      }, 'Test2::Compare::Custom' )
                             ],
                             [
@@ -61,12 +63,12 @@ my $expected1 = {
                             ],
                             [
                               bless( {
-                                       "_file" => "(eval 141)",
+                                       "_file" => "(eval 000)",
                                        "_lines" => [
                                                      7
                                                    ],
                                        "code" => sub {
-                                                     BEGIN {${^WARNING_BITS} = "\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x15\x00\x04\x40\x05\x04\x50"}
+                                                     BEGIN {${^WARNING_BITS} = "\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x41\x50\x51\x00\x00\x15\x55\x55"}
                                                      use strict;
                                                      no feature ':all';
                                                      use feature ':5.16';
@@ -75,15 +77,16 @@ my $expected1 = {
                                                      'Math::BigFloat'->new('1.1')->beq($got);
                                                  },
                                        "name" => "Math::BigFloat->new(\"1.1\")->beq(\$_)",
-                                       "operator" => "CODE(...)"
+                                       "operator" => "CODE(...)",
+                                       "stringify_got" => 0
                                      }, 'Test2::Compare::Custom' ),
                               bless( {
-                                       "_file" => "(eval 142)",
+                                       "_file" => "(eval 000)",
                                        "_lines" => [
                                                      7
                                                    ],
                                        "code" => sub {
-                                                     BEGIN {${^WARNING_BITS} = "\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x15\x00\x04\x40\x05\x04\x50"}
+                                                     BEGIN {${^WARNING_BITS} = "\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x55\x41\x50\x51\x00\x00\x15\x55\x55"}
                                                      use strict;
                                                      no feature ':all';
                                                      use feature ':5.16';
@@ -92,7 +95,8 @@ my $expected1 = {
                                                      'Math::BigFloat'->new('2.1')->beq($got);
                                                  },
                                        "name" => "Math::BigFloat->new(\"2.1\")->beq(\$_)",
-                                       "operator" => "CODE(...)"
+                                       "operator" => "CODE(...)",
+                                       "stringify_got" => 0
                                      }, 'Test2::Compare::Custom' )
                             ]
                           ]

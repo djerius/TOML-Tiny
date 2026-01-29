@@ -1,4 +1,4 @@
-# File automatically generated from BurntSushi/toml-test
+# File automatically generated from toml-lang/toml-test
 use utf8;
 use Test2::V0;
 use Data::Dumper;
@@ -18,6 +18,9 @@ my $toml = do{ local $/; <$fh>; };
 close $fh;
 
 my $expected1 = {
+               "escaped" => "lol\"\"\"",
+               "five-quotes" => "Closing with five quotes\n\"\"",
+               "four-quotes" => "Closing with four quotes\n\"",
                "lit_one" => "'one quote'",
                "lit_one_space" => " 'one quote' ",
                "lit_two" => "''two quotes''",

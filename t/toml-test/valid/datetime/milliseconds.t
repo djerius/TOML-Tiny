@@ -1,4 +1,4 @@
-# File automatically generated from BurntSushi/toml-test
+# File automatically generated from toml-lang/toml-test
 use utf8;
 use Test2::V0;
 use Data::Dumper;
@@ -18,9 +18,9 @@ my $toml = do{ local $/; <$fh>; };
 close $fh;
 
 my $expected1 = {
-               "utc1" => "1987-07-05T17:45:56.123456000Z",
+               "utc1" => "1987-07-05T17:45:56.123000000Z",
                "utc2" => "1987-07-05T17:45:56.600000000Z",
-               "wita1" => "1987-07-05T17:45:56.123456000+08:00",
+               "wita1" => "1987-07-05T17:45:56.123000000+08:00",
                "wita2" => "1987-07-05T17:45:56.600000000+08:00"
              };
 

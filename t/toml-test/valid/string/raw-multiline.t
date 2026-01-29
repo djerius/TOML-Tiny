@@ -1,4 +1,4 @@
-# File automatically generated from BurntSushi/toml-test
+# File automatically generated from toml-lang/toml-test
 use utf8;
 use Test2::V0;
 use Data::Dumper;
@@ -20,7 +20,9 @@ close $fh;
 my $expected1 = {
                "firstnl" => "This string has a ' quote character.",
                "multiline" => "This string\nhas ' a quote character\nand more than\none newline\nin it.",
-               "oneline" => "This string has a ' quote character."
+               "multiline_with_tab" => "First line\n\t Followed by a tab",
+               "oneline" => "This string has a ' quote character.",
+               "this-str-has-apostrophes" => "' there's one already\n'' two more\n''"
              };
 
 
