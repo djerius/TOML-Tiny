@@ -1,5 +1,5 @@
 #-------------------------------------------------------------------------------
-# Generates perl unit tests from the toml/json files in BurntSush/toml-test
+# Generates perl unit tests from the toml/json files in toml-lang/toml-test
 # without having to add special casing to TOML::Tiny to conform to their
 # annotated JSON format.
 #-------------------------------------------------------------------------------
@@ -21,12 +21,17 @@ binmode STDIN,  ':encoding(UTF-8)';
 binmode STDOUT, ':encoding(UTF-8)';
 
 sub slurp{
-  open my $fh, '<', $_[0] or die $!;
+  open my $fh, '<', $_[0] or die "$_[0]: $!";
   local $/;
   <$fh>;
 }
 
-# Removes type annotations from BurntSushi/toml-test JSON files and returns the
+sub spew {
+  open my $fh, '>', $_[0] or die $!;
+  print $fh $_[1];
+}
+
+# Removes type annotations from toml-lang/toml-test JSON files and returns the
 # cleaned up data structure to which the associated TOML file should be parsed.
 sub deturd_json{
   state $json = JSON::PP->new->utf8(1);
@@ -50,13 +55,15 @@ sub deannotate{
   my $data = shift;
 
   for (ref $data) {
-    when ('HASH') {
+    if ( $_ eq  'HASH') {
       if (exists $data->{type} && exists $data->{value} && keys(%$data) == 2) {
         for ($data->{type}) {
-          return $data->{value} eq 'true' ? 1 : 0             when /bool/;
-          return [ map{ deannotate($_) } @{$data->{value}} ]  when /array/;
+          return $data->{value} eq 'true' ? 1 : 0             if /bool/;
+          return [ map{ deannotate($_) } @{$data->{value}} ]  if /array/;
 
-          when (/integer/) {
+          my $result;
+
+          if (/integer/) {
             my $src = qq{
               use Test2::Tools::Compare qw(validator);
               validator('Math::BigInt->new("$data->{value}")->beq(\$_)' => sub{
@@ -66,13 +73,11 @@ sub deannotate{
               });
             };
 
-            my $result = eval $src;
+            $result = eval $src;
             $@ && die $@;
-
-            return $result;
           }
 
-          when (/float/) {
+          elsif (/float/) {
             my $src;
 
             if ($data->{value} eq 'nan') {
@@ -113,13 +118,23 @@ sub deannotate{
               };
             }
 
-            my $result = eval $src;
+            $result = eval $src;
             $@ && die $@;
-
-            return $result;
           }
 
-          default{ return $data->{value} }
+
+          # force file location to a constant. random changes in files
+          # cause the Dumped object to have different 'file'
+          # attributes, even though the actual compare code hasn't
+          # changed.  This avoids excess VCS churn.
+          if ( $result ) {
+            $result->set_file( '(eval 000)' );
+          }
+          else {
+              $result = $data->{value};
+          }
+
+          return $result;
         }
       }
 
@@ -128,46 +143,79 @@ sub deannotate{
       return \%object;
     }
 
-    when ('ARRAY') {
+    elsif  ($_ eq 'ARRAY') {
       return [ map{ deannotate($_) } @$data ];
     }
 
-    default{
+    else {
       return $data;
     }
   }
 }
 
+sub fixups {
+
+    # toml-test has lower precision datetime values than TOML::Tiny
+    spew( 'toml-test/tests/valid/datetime/milliseconds.json', <<'EOS' );
+{
+    "utc1":  {"type": "datetime", "value": "1987-07-05T17:45:56.123000000Z"},
+    "utc2":  {"type": "datetime", "value": "1987-07-05T17:45:56.600000000Z"},
+    "wita1": {"type": "datetime", "value": "1987-07-05T17:45:56.123000000+08:00"},
+    "wita2": {"type": "datetime", "value": "1987-07-05T17:45:56.600000000+08:00"}
+}
+EOS
+
+}
+
+
 sub find_tests{
   my $src = shift;
+  my $spec = shift;
+
+  my @src = File::Spec->splitdir( $src );
+  my $type = pop @src;
+
   my %tests;
-  find {
-    no_chdir => 1,
-    wanted => sub {
-      return unless /\.toml$/;
+  my sub wanted {
+    return unless /\.toml$/;
 
-      my $abs = File::Spec->rel2abs( $_ );
-      my $rel = File::Spec->abs2rel( $abs, $src );
+    my $abs = File::Spec->rel2abs( $_ );
+    my $rel = File::Spec->abs2rel( $abs, $src );
 
-      my $toml = $rel;
-      my $test = substr $rel, 0, -5;
+    my $toml = $rel;
+    my $test = substr $rel, 0, -5;
+    $tests{$test} = $toml;
+  }
 
-      $tests{$test} = $toml;
-    },
-  } => $src;
+  my $list = File::Spec->catfile( @src, "files-toml-$spec" );
+  if ( -f $list ) {
+      my @files = split( /\n/, slurp( $list ) );
+      for ( grep /^$type/, @files ) {
+          $_ = File::Spec->catfile( @src, $_ );
+          wanted();
+      }
+  }
+  else {
+    find {
+      no_chdir => 1,
+      wanted => \&wanted,
+    } => $src;
+  }
+
   return %tests;
 }
 
 sub build_pospath_test_files{
   my $src  = shift;
   my $dest = shift;
+  my $spec = shift;
 
   $src = "$src/tests/valid";
   $dest = "$dest/t/toml-test/valid";
 
   print "Generating positive path tests from $src\n";
 
-  my %TOML = find_tests( $src );
+  my %TOML = find_tests( $src, $spec );
 
   for (sort keys %TOML) {
     copy("$src/$TOML{$_}", "$dest/$TOML{$_}");
@@ -183,7 +231,7 @@ sub build_pospath_test_files{
 
     open my $fh, '>', $test or die $!;
 
-    print $fh qq{# File automatically generated from BurntSushi/toml-test
+    print $fh qq{# File automatically generated from toml-lang/toml-test
 use utf8;
 use Test2::V0;
 use Data::Dumper;
@@ -249,15 +297,16 @@ done_testing;};
 }
 
 sub build_negpath_test_files{
-  my $src  = shift;
-  my $dest = shift;
+ my $src  = shift;
+ my $dest = shift;
+ my $spec = shift;
 
   $src = "$src/tests/invalid";
   $dest = "$dest/t/toml-test/invalid";
 
   print "Generating negative path tests from $src\n";
 
-  my %TOML = find_tests( $src );
+  my %TOML = find_tests( $src, $spec );
 
   for (sort keys %TOML) {
     copy("$src/$TOML{$_}", "$dest/$TOML{$_}");
@@ -270,7 +319,7 @@ sub build_negpath_test_files{
 
     open my $fh, '>', $test or die $!;
 
-    print $fh qq{# File automatically generated from BurntSushi/toml-test
+    print $fh qq{# File automatically generated from toml-lang/toml-test
 use utf8;
 use Test2::V0;
 use TOML::Tiny;
@@ -291,17 +340,25 @@ done_testing;};
   }
 }
 
-my $usage = "usage: build-tests \$toml-test-repo-path \$toml-tiny-repo-path\n";
+my $usage = "usage:$0 \$toml-test-repo-path \$toml-tiny-repo-path \$toml-spec-version\n";
 my $toml_test_path = shift @ARGV || die $usage;
 my $toml_tiny_path = shift @ARGV || die $usage;
+my $toml_spec_version = shift @ARGV || die $usage;
 
--d $toml_test_path          || die "invalid path to BurntSushi/toml-test: $toml_test_path\n";
--d "$toml_test_path/tests"  || die "invalid path to BurntSushi/toml-test: $toml_test_path\n";
+-d $toml_test_path          || die "invalid path to toml-lang/toml-test: $toml_test_path\n";
+-d "$toml_test_path/tests"  || die "invalid path to toml-lang/toml-test: $toml_test_path\n";
 -d $toml_tiny_path          || die "invalid path to TOML::Tiny repo: $toml_tiny_path\n";
 -d "$toml_tiny_path/t"      || die "invalid path to TOML::Tiny repo: $toml_tiny_path\n";
 
-print "Checking out master branch of BurntSushi/toml-test and pulling the latest commits\n";
-system("cd $toml_test_path && git checkout master && git pull") == 0 || die $!;
+print "Checking out main branch of toml-lang/toml-test and pulling the latest commits\n";
 
-build_pospath_test_files($toml_test_path, $toml_tiny_path);
-build_negpath_test_files($toml_test_path, $toml_tiny_path);
+# check out toml-test repo, and make sure we don't have cruft in it
+system("cd $toml_test_path && git checkout main && git pull && git restore --staged --worktree . && git clean -f .") == 0 || die $!;
+
+fixups;
+
+-f "$toml_test_path/tests/files-toml-$toml_spec_version" || die "invalid spec version: $toml_spec_version";
+
+my @args = ( $toml_test_path, $toml_tiny_path, $toml_spec_version );
+build_pospath_test_files(@args);
+build_negpath_test_files(@args);
