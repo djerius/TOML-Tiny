@@ -131,7 +131,7 @@ sub set_key {
   my ($self, $token) = @_;
   my @keys = $self->get_keys;
   my $key  = pop @keys;
-  my $node = $self->scan_to_key(\@keys);
+  my $node = $self->scan_to_key($token, \@keys);
 
   if ($key && exists $node->{$key}) {
     $self->parse_error($token, 'duplicate key: ' . $self->current_key);
@@ -192,6 +192,7 @@ sub declare_key {
 
 sub scan_to_key {
   my $self = shift;
+  my $token = shift;
   my $keys = shift // [ $self->get_keys ];
   my $node = $self->{root};
 
@@ -208,7 +209,7 @@ sub scan_to_key {
         next KEY;
       }
       my $full_key = join '.', @$keys;
-      die "$full_key is already defined\n";
+      $self->parse_error($token, "$full_key is already defined");
     }
     else {
       $node = $node->{$key} = {};
@@ -224,7 +225,7 @@ sub parse_table {
 
   $self->expect_type($token, 'table');
   $self->push_keys($token);
-  $self->scan_to_key;
+  $self->scan_to_key($token);
 
   $self->declare_key($token);
 
@@ -272,7 +273,7 @@ sub parse_array_table {
 
   my @keys = $self->get_keys;
   my $key  = pop @keys;
-  my $node = $self->scan_to_key(\@keys);
+  my $node = $self->scan_to_key($token, \@keys);
   $node->{$key} //= [];
   push @{ $node->{$key} }, {};
 
