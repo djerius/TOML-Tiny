@@ -190,26 +190,41 @@ sub declare_key {
   }
 }
 
+# return a node for a key, creating intermediate nodes if
+# required. the resulting node must be non-terminal (not a leaf)
+# errors if the path is terminal, or if the path attempts
+# to reference a "static" array, i.e. not an "array of tables"
+# which can be added to.
+
 sub scan_to_key {
   my $self = shift;
   my $token = shift;
   my $keys = shift // [ $self->get_keys ];
   my $node = $self->{root};
 
+  my $path;
   KEY:
   for my $key (@$keys) {
+    defined $path ? $path .= '.' . $key : $path = $key;
     if (exists $node->{$key}) {
       my $ref = ref $node->{$key};
       if ( $ref eq 'HASH' ) {
         $node = $node->{$key};
         next KEY;
       }
-      if ( $ref eq 'ARRAY' ) {
-        $node = $node->{$key}[-1];
-        next KEY;
+      elsif ( $ref eq 'ARRAY' ) {
+          # the only context permitting the access of an element of an
+          # array is if the array is an "array of tables", in which
+          # case the reference is to the last defined table in the
+          # array.
+          $self->parse_error($token, "$path: cannot extend arrays")
+            unless $self->{array_tables}{$path};
+          $node = $node->{$key}[-1];
+          next KEY;
       }
-      my $full_key = join '.', @$keys;
-      $self->parse_error($token, "$full_key is already defined");
+      else {
+        $self->parse_error($token, "$path: cannot redefine a scalar value");
+      }
     }
     else {
       $node = $node->{$key} = {};
